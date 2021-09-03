@@ -1,6 +1,7 @@
-package com.rflores.bookstore.repository;
+package com.rflores.bookstore.repositories;
 
-import com.rflores.domain.Categoria;
+import com.rflores.bookstore.domain.Categoria;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
