@@ -17,7 +17,10 @@ public class CategoriaDTO implements Serializable {
 	@NotNull(message = "O campo nome é obrigatório")
 	@Size(min = 4, max = 40, message = "Tamanho minímo é 4 caracteres e máximo 40 caracteres")
 	private String name;
+        private String descricao;
 
+    
+        
 	public CategoriaDTO() {
 		super();
 	}
@@ -26,6 +29,7 @@ public class CategoriaDTO implements Serializable {
 		super();
 		this.id = obj.getId();
 		this.name = obj.getNome();
+                this.descricao = obj.getDescricao();
 	}
 
 	public Integer getId() {
@@ -43,6 +47,14 @@ public class CategoriaDTO implements Serializable {
 	public void setNome(String name) {
 		this.name = name;
 	}
+        
+        public String getDescricao() {
+                return descricao;
+        }
+
+        public void setDescricao(String descricao) {
+                this.descricao = descricao;
+        }
 
 	@Override
 	public int hashCode() {
