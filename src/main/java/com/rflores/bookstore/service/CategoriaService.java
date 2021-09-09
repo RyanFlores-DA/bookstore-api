@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.rflores.bookstore.repositories.CategoriaRepository;
 import com.rflores.bookstore.domain.Categoria;
 import com.rflores.bookstore.service.exceptions.ObjectNotFoundException;
+import java.util.List;
 
 @Service
 public class CategoriaService {
@@ -19,5 +20,9 @@ public class CategoriaService {
         Optional<Categoria> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id:" + id + ", Tipo:" +Categoria.class.getName()));
         
+    }
+    
+    public List<Categoria> findAll(){
+        return repository.findAll();
     }
 }
