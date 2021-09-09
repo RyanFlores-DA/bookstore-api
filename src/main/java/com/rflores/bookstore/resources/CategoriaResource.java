@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rflores.bookstore.domain.Categoria;
 import com.rflores.bookstore.dtos.CategoriaDTO;
 import com.rflores.bookstore.service.CategoriaService;
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
 @RestController
@@ -32,5 +36,12 @@ public class CategoriaResource {
         List<Categoria> list = service.findAll();
         List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDTO);
+    }
+    
+    @PostMapping
+    public ResponseEntity<Categoria> create(@RequestBody Categoria obj){
+        obj = service.create(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 }
